@@ -4,7 +4,7 @@ code snippets and miscellaneous notes related to plan 9. everything is public do
 
 files:
 
-* cae.c - caesar cipher
+* rot.c - caesar cipher
 * go/ - notes on using go and related stuff
 * iconinit.c - set wallpaper
 * mam - shortcut, open a manpage in `sam`
