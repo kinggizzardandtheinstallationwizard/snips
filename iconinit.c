@@ -24,6 +24,7 @@ iconinit(void)
 		fprint(2, "iconinit: %r\n");
 	}
 
+	/* fallback */
 	background = allocimage(display, Rect(0,0,1,1), screen->chan, 1, 0x777777FF);
 
 skipbgfallback:
