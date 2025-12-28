@@ -1,6 +1,6 @@
 # snips
 
-code snippets. everything is public domain. who caaares
+code snippets and miscellaneous notes related to plan 9. everything is public domain. who caaares
 
 files:
 
