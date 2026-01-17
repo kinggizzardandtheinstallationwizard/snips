@@ -46,4 +46,4 @@ GOROOT=/sys/lib/go/amd64
 
 Now `reboot` and you should be good to go. Try building something!
 
-![](https://files.catbox.moe/imolnf.png)
+![](sc.png)
