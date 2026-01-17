@@ -5,5 +5,5 @@ code snippets and miscellaneous notes related to plan 9. everything is public do
 files:
 
 * cae.c - caesar cipher
-* golang.md - notes on using go
+* go/ - notes on using go and related stuff
 * iconinit.c - set wallpaper
