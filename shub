@@ -1,0 +1,54 @@
+#!/bin/rc
+# ほう…向かってくるのか。
+progname=$0
+opt=$1
+author=$2
+src=$3
+wd=`{pwd}
+
+# config
+host=gits://shithub.us
+gitdir=$home/git
+
+fn usage {
+	echo usage: $progname '[-d|-i|-h]'
+	echo try $progname '-h'
+	exit usage
+}
+
+fn help {
+	echo usage: $progname '[-d|-i|-h]'
+	echo
+	echo EXAMPLES
+	echo
+	echo '	Download repository from' $host/AUTHOR/REPO
+	echo
+	echo '		%' $progname '-d {AUTHOR} {REPO}'
+	echo
+	echo '	Download and install with mk && mk install automatically.'
+	echo
+	echo '		%' $progname '-i' $author $src
+	echo
+	echo '	Show this help page.'
+	echo
+	echo '		%' $progname '-h'
+	echo
+}
+
+fn cln {
+	cd $home/git
+	git/clone $host/$author/$src
+	cd $wd
+	echo $src now available at $home/git/$src
+}
+
+switch($opt) {
+	case -h
+		help
+	case -d
+		cln
+	case -i
+		echo not implemented yet lol
+	case *
+		usage
+}

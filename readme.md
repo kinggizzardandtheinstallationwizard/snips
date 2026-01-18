@@ -7,3 +7,4 @@ files:
 * cae.c - caesar cipher
 * go/ - notes on using go and related stuff
 * iconinit.c - set wallpaper
+* shub - shortcut script for downloading from [shithub.us](https://shithub.us)
