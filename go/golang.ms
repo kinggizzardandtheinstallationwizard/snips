@@ -24,11 +24,7 @@ Bootstrap from another OS
 .PP
 .ft H
 Go is written in Go, and it cannot be built with super old versions of Go. Additionally,
-the last version of Go to be written in C was
-.ft HB
-1.4.3
-.ft H
-. This means, as I understand it,
+the last version of Go to be written in C was \fC1.4.3\fH. This means, as I understand it,
 if you don't cross-compile from another machine, you'll be compiling like 10 previous
 versions of Go in sequence. Don't do that.
 
