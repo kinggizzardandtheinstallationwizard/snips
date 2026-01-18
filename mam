@@ -1,0 +1,30 @@
+#!/bin/rc
+# run man and send it to sam
+progname=$0
+pg=$1
+loc=/tmp/man-$pg
+
+fn fail {
+	echo could not put $loc
+	rm $loc
+	exit
+}
+
+fn usage {
+	echo usage: $progname CMD
+	exit usage
+}
+
+fn opn {
+	man $pg > $loc
+	echo opening $loc
+	sam $loc
+	rm $loc && echo deleted $loc
+}
+
+switch($pg) {
+	case ''
+		usage
+	case *
+		opn
+}
