@@ -27,7 +27,7 @@ fn help {
 	echo
 	echo '	Download and install with mk && mk install automatically.'
 	echo
-	echo '		%' $progname '-i' $author $src
+	echo '		%' $progname '-i {AUTHOR} {REPO}
 	echo
 	echo '	Show this help page.'
 	echo
