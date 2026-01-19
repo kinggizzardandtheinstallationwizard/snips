@@ -6,7 +6,7 @@
 This is how I, personally, got Go working in 9front. Much like others' notes on this,
 the instructions could be outdated or just plain *wrong*. Use your brain! **Your mileage may vary**.
 
-ACHTUNG! (2026 January 19) ARM64 users: there is not yet an official port of Go to `plan9/arm64`.
+**ACHTUNG! (2026 January 19) ARM64 users:** there is not yet an official port of Go to `plan9/arm64`.
 There is, however, a working (albeit slightly outdated)
 [community branch](https://github.com/psilva261/go-arm64.plan9) available.
 
