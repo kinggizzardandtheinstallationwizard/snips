@@ -2,8 +2,26 @@
 
 ## Installation
 
-`27 dec 2025` -- Instructions on this stuff is kinda contradictory so here's how I,
-personally, got Go working in 9front. **YMMV**
+**ACHTUNG! (2025 December 27)** Instructions on this stuff is kinda contradictory.
+This is how I, personally, got Go working in 9front. Much like others' notes on this,
+the instructions could be outdated or just plain *wrong*. Use your brain! **Your mileage may vary**.
+
+ACHTUNG! (2026 January 19) ARM64 users: there is not yet an official port of Go to `plan9/arm64`.
+There is, however, a working (albeit slightly outdated)
+[community branch](https://github.com/psilva261/go-arm64.plan9) available.
+
+### Prerequisite
+
+Before we start, I recommend running this totally unrelated command if you haven't already.
+You'll thank me later.
+
+```
+hget https://curl.haxx.se/ca/cacert.pem > /sys/lib/tls/ca.pem
+```
+
+I am mentioning this first so you may easily ignore it if you've already done this.
+Since Go is designed specifically with modern internet connections in mind, you'll obviously
+want a working CA certificate, which Plan 9(front) does not ship with.
 
 ### Bootstrap from another OS
 
@@ -23,25 +41,34 @@ GOOS=plan9 GOARCH=amd64 ./bootstrap.bash
 
 My PC's fans had a lot of fun with this.
 
-You'll get a file somewhere like `../../go-plan9-amd64-bootstrap.tbz` after.
+You'll get a file somewhere like `../../go-plan9-$objtype-bootstrap.tbz` after.
 
 Get this file on your plan 9 machine. If you can stick it on a web server you can do:
 
 ```
-hget http(s)://www.example.com/wherever/go-plan9-amd64-bootstrap.tbz | bunzip2 -c | tar x
+hget http(s)://www.example.com/wherever/go-plan9-$objtype-bootstrap.tbz | bunzip2 -c | tar x
 mkdir /sys/lib/go
-mv go-plan9-amd64-bootstrap /sys/lib/go/amd64
+mv go-plan9-$objtype-bootstrap /sys/lib/go/$objtype
 ```
 
-Try invoking `/sys/lib/go/amd64/bin/go` with no arguments and see if it works.
+If you are using your Plan 9 machine through `drawterm`, you can copy the file without such hassle.
+
+```
+mkdir /sys/lib/go && cd /sys/lib/go
+cp /mnt/term/path/to/local/go-plan9-$objtype-bootstrap.tbz .
+bunzip -c go-plan9-$objtype-bootstrap.tbz | tar x
+mv go-plan9-$objtype-bootstrap $objtype
+```
+
+Try invoking `/sys/lib/go/$objtype/bin/go` with no arguments and see if it works.
 If it does, go ahead and run `mkdir -p $home/go/bin` and add this stuff
 somewhere in your `$home/lib/profile`:
 
 ```
-bind -a /sys/lib/go/amd64/bin /bin
+bind -a /sys/lib/go/$objtype/bin /bin
 bind -a $home/go/bin /bin
 GOPROXY=https://proxy.golang.org
-GOROOT=/sys/lib/go/amd64
+GOROOT=/sys/lib/go/$objtype
 ```
 
 Now `reboot` and you should be good to go. Try building something!

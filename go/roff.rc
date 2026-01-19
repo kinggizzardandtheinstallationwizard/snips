@@ -1,0 +1,2 @@
+#!/bin/rc
+troff -ms -mpictures golang.ms

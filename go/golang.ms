@@ -1,4 +1,4 @@
-\" troff -ms -mpictures golang.ms | page
+\" % troff -ms -mpictures golang.ms | page
 
 .TL
 .ft HB
@@ -11,11 +11,44 @@ kinggizzardandtheinstallationwizard
 Installation
 
 .PP
-.ft H
-Note, 2025 December 27: Instructions on this stuff is kinda contradictory.
-This is how I, personally, got Go working in 9front.
 .ft HB
-YMMV\fH.
+ACHTUNG! (2025 December 27)\fH Instructions on this stuff is kinda contradictory.
+This is how I, personally, got Go working in 9front. Much like others' notes on this,
+the instructions could be outdated or just plain
+.ft HI
+wrong\fH. Use your brain!
+.ft HB
+Your mileage may vary\fH.
+
+.PP
+.ft HB
+ACHTUNG! (2026 January 19)\fH ARM64 users: there is not yet an official port of Go to \fCplan9/arm64\fH.
+There is, however, a working (albeit slightly outdated) community branch available:
+
+.DS
+.ft C
+https://github.com/psilva261/go-arm64.plan9
+.DE
+
+.SH
+.ft HB
+Prerequisite
+
+.PP
+.ft H
+Before we start, I recommend running this totally unrelated command if you haven't already.
+You'll thank me later.
+
+.DS
+.ft C
+hget https://curl.haxx.se/ca/cacert.pem > /sys/lib/tls/ca.pem
+.DE
+
+.PP
+.ft H
+I am mentioning this first so you may easily ignore it if you've already done this.
+Since Go is designed specifically with modern internet connections in mind, you'll obviously
+want a working CA certificate, which Plan 9(front) does not ship with.
 
 .SH
 .ft HB
@@ -23,10 +56,10 @@ Bootstrap from another OS
 
 .PP
 .ft H
-Go is written in Go, and it cannot be built with super old versions of Go. Additionally,
-the last version of Go to be written in C was \fC1.4.3\fH. This means, as I understand it,
-if you don't cross-compile from another machine, you'll be compiling like 10 previous
-versions of Go in sequence. Don't do that.
+Go is written in Go, and it cannot be built with super old versions of Go. Considering this,
+and that the last version of Go to be written in C was
+.ft HB
+1.4.3\fH, starting without an already working, current version of Go is infeasible.
 
 You can cross-compile Go from a Linux machine with Go already installed:
 
@@ -38,6 +71,8 @@ cd go/src
 GOOS=plan9 GOARCH=amd64 ./bootstrap.bash
 .DE
 
+Change the value of \fCGOARCH\fH to that of \fC$objtype\H on your target Plan 9 system.
+
 .PP
 .ft H
 My PC's fans had a lot of fun with this.
@@ -48,12 +83,25 @@ Get this file on your plan 9 machine. If you can stick it on a web server you ca
 
 .DS
 .ft C
-hget http(s)://wherever.com/go-plan9-amd64-bootstrap.tbz | bunzip2 -c | tar x
+hget http(s)://wherever.com/go-plan9-$objtype-bootstrap.tbz | bunzip2 -c | tar x
 mkdir /sys/lib/go
-mv go-plan9-amd64-bootstrap /sys/lib/go/amd64
+mv go-plan9-$objtype-bootstrap /sys/lib/go/$objtype
 .DE
 
-.bp
+.PP
+.ft H
+If you are using your Plan 9 machine through
+.ft HB
+drawterm\fH,
+you can copy the file without such hassle.
+
+.DS
+.ft C
+mkdir /sys/lib/go && cd /sys/lib/go
+cp /mnt/term/path/to/local/go-plan9-$objtype-bootstrap.tbz .
+bunzip -c go-plan9-$objtype-bootstrap.tbz | tar x
+mv go-plan9-$objtype-bootstrap $objtype
+.DE
 
 .PP
 .ft H
@@ -73,4 +121,4 @@ GOROOT=/sys/lib/go/amd64
 .ft H
 Now \fCreboot\fH and you should be good to go. Try building something!
 
-.BP sc.ps 6i 6i c "It works!"
+.BP sc.ps 4i 4i c "It works!"
