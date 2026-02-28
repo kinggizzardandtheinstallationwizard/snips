@@ -2,7 +2,6 @@
 # run man and send it to sam
 progname=$0
 pg=$1
-loc=/tmp/man-$pg
 
 fn fail {
 	echo could not put $loc
@@ -16,6 +15,7 @@ fn usage {
 }
 
 fn opn {
+	loc=/tmp/man-$pg
 	man $pg > $loc
 	echo opening $loc
 	sam $loc
