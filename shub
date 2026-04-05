@@ -7,7 +7,7 @@ src=$3
 wd=`{pwd}
 
 # config
-host=gits://shithub.us
+host=gits://only9fans.com
 gitdir=$home/git
 
 fn usage {
