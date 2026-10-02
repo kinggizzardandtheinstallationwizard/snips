@@ -11,9 +11,11 @@ files:
 * shub - shortcut script for downloading from [shithub.us](https://shithub.us)
 
 ## Notes
+don't forget to set your clocks, kids
 
-As far as I'm aware, there's no built-in markdown command on Plan 9, but a [C implementation of Markdown](https://www.pell.portland.or.us/~orc/Code/discount/) is available, and it compiles on Plan 9 just fine. I threw together a crappy little Go program that would spit out
-Markdown files for me before I knew this.
+### notes on taking notes
+
+As far as I'm aware, there's no built-in markdown command on Plan 9, but a [C implementation of Markdown](https://www.pell.portland.or.us/~orc/Code/discount/) is available, and it compiles on Plan 9 just fine.
 
 
 ```
@@ -28,5 +30,5 @@ Since **page(1)** can read HTML, you can read Markdown files right in a terminal
 
 Note that it doesn't quite read the language the same as something like GitHub, and some formatting may look weird.
 For example you need to type `markdown -f fencedcode` instead of just `markdown` for any Markdown document that has code blocks in it, like this one does.
-If you want more consistent behavior you can still use my [crappy Go version](https://github.com/kinggizzardandtheinstallationwizard/gack).
-Honestly, if you plan to write anything that you expect people to read on a Plan 9 system, learn to use **troff(1)** and stick to that.
+
+For any *real* writing I highly recommend learning **troff(1)** and using that instead.
