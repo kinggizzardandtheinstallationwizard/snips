@@ -1,7 +1,11 @@
 #!/bin/rc
-# run man and send it to sam
+# use sam as a pager for man
 progname=$0
-pg=$1
+sect=$1
+pg=$2
+if (~ $2 '') {
+	pg=$1
+}
 
 fn fail {
 	echo could not put $loc
@@ -15,8 +19,14 @@ fn usage {
 }
 
 fn opn {
-	loc=/tmp/man-$pg
-	man $pg > $loc
+	if (~ $pg $1) {
+		loc=/tmp/man-$pg
+		man $pg > $loc
+	}
+	if not {
+		loc=/tmp/man-$sect-$pg
+		man $sect $pg > $loc
+	}
 	echo opening $loc
 	sam $loc
 	rm $loc && echo deleted $loc
