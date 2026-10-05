@@ -38,8 +38,6 @@ main(int argc, char *argv[])
 	}
 	Bterm(&inbuf);
 
-	putchar('\n');
-
 	exits(nil);
 }
 
